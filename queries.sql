@@ -1,17 +1,16 @@
--- Database Queries
+SELECT * FROM [Customers] WHERE postalcode = '1010'
 
--- Find all customers with postal code 1010
+SELECT * FROM [Suppliers] WHERE supplierId = '11'
 
--- Find the phone number for the supplier with the id 11
+SELECT * FROM [Customers] WHERE city = 'London';
+SELECT * FROM [Customers] WHERE city = 'Madrid';
+SELECT * FROM [Customers] WHERE country = 'Brazil';
 
--- List first 10 orders placed, sorted descending by the order date
+Insert Into Customers (CustomerName) values('Bilbo Baggins');
 
--- Find all customers that live in London, Madrid, or Brazil
+Update Customers SET Country='The Shire' WHERE CustomerID = '92';
+Update Customers SET City='Bag End' WHERE CustomerID = '92';
+Update Customers SET Address='1 Hobbit-Hole' WHERE CustomerID ='92';
 
--- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
+Update Customers SET PostalCode = '11122' WHERE CustomerID = '92'
 
--- Update Bilbo Baggins record so that the postal code changes to "11122"
-
--- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
-
--- (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name
