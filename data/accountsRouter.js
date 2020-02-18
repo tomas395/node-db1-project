@@ -1,9 +1,10 @@
 const express = require("express");
 
 // database access using knex
-const db = require("../data/dbConfig");
+const db = require("./dbConfig");
 
 const router = express.Router();
+router.use(express.json());
 
 // Start of CRUD operations
 
@@ -39,8 +40,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  db.insert(req.body, "id")
-    .into("accounts")
+  db("accounts")
+    .insert(req.body)
     .then(accountID => {
       res.status(200).json(accountID);
     })
@@ -53,8 +54,10 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
+  const id = req.params.id;
+
   db("accounts")
-    .where({ id: req.params.id })
+    .where({ id })
     .update(req.body)
     .then(count => {
       res.status(200).json(count);
@@ -82,9 +85,3 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
-
-// function getById(id) {
-//     return db("posts")
-//       .where({ id })
-//       .first();
-//   }
